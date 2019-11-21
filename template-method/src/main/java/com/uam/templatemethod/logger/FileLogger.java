@@ -5,34 +5,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.time.Instant;
 import java.time.LocalDate;
 
-public class FileLogger implements Logger {
-
-    private final String className;
+public class FileLogger extends AbstractLogger {
 
     public FileLogger(String className) {
-        this.className = className;
+        super(className);
     }
 
-    @Override
-    public void info(String text) {
-        log(format(text), Level.INFO);
-    }
-
-    @Override
-    public void error(String text) {
-        log(format(text), Level.ERROR);
-    }
-
-    private String format(String text) {
-        return Instant.now() + " [" + className + "]: " + text;
-    }
-
-    private void log(String text, Level level) {
+    public void log(String text, Level level) {
         String currentFileName = calculateCurrentFileName(level);
-        Path pathToLogFile = Paths.get(currentFileName);
+        try {
+            Files.createDirectories(Paths.get("template-method", "logs"));
+        } catch (IOException ignored) {
+        }
+        Path pathToLogFile = Paths.get("template-method", "logs", currentFileName);
 
         if (Files.exists(pathToLogFile)) {
             writeToFile(pathToLogFile, text, StandardOpenOption.APPEND);
