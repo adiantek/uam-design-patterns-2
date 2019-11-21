@@ -18,7 +18,7 @@ public class DummyDataBuilder {
         );
     }
 
-    public Exam buildExam() {
+    public Exam buildExam(EvaluationStrategy strategy) {
         List<ExamQuestion> questions = new ArrayList<>();
 
         // first question
@@ -33,7 +33,7 @@ public class DummyDataBuilder {
         questions.add(firstQuestion);
         questions.add(secondQuestion);
 
-        return new Exam(questions);
+        return new Exam(strategy, questions);
     }
 
     private FinishedExam buildFinishedExam(Exam exam, int numberOfCorrectAnswers) {

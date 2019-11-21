@@ -8,14 +8,14 @@ public class Cheeseburger implements Product {
 
     private final double cost;
 
-    Cheeseburger() {
+    public Cheeseburger() {
         this.orderId = UUID.randomUUID();
         this.cost = 3.5;
     }
 
     @Override
-    public void describe() {
-        System.out.print("[" + orderId + "] Cheeseburger");
+    public String toString() {
+        return "[" + orderId + "] Cheeseburger";
     }
 
     @Override

@@ -14,6 +14,6 @@ public class FinishedExam {
     }
 
     public Grade evaluate() {
-        return Grade.F;
+        return exam.evaluate(examAnswers);
     }
 }
