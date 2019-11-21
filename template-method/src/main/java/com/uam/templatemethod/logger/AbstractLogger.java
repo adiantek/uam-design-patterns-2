@@ -28,7 +28,7 @@ public abstract class AbstractLogger implements Logger {
     }
 
     private String format(String text) {
-        return Instant.now() + " [" + className + "]: " + text;
+        return String.format("%s [%s]: %s", Instant.now(), className, text);
     }
 
     private void validateAndLog(String text, Level logLevel) {
